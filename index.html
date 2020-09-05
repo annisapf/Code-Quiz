@@ -21,15 +21,35 @@
 
 <body>
 
+    <audio id="wrong-sound">
+        <source src="fart-1.wav" type="audio/wav">
+    </audio>
+
+
     <div class="d-flex justify-content-center align-items-center">
 
-        <div id="question-container" class="hide">
+
+        <div id="intropage-container" class="hide">
+            <div id="intropage">Welcome to the quiz</div>
+        </div>
+
+
+        <div id="question-container" class="display:none">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
                 <button class="btn" id="first-answer">Answer 1</button>
                 <button class="btn" id="second-answer">Answer 2</button>
                 <button class="btn" id="third-answer">Answer 3</button>
                 <button class="btn" id="fourth-answer">Answer 4</button>
+            </div>
+
+        </div>
+
+        <div id="input-data-container" class="hide" style="display:none">
+            <div id="input-data">Input Your Name Here</div>
+            <div id="answer-buttons" class="btn-grid">
+                <label for="name">Your Name</label>
+                <input type="text" id="name">
             </div>
 
         </div>
@@ -43,12 +63,20 @@
     </div>
 
     <div class="d-flex justify-content-center align-items-center">
-        <div class="time">
-            <div id="seconds"></div>
+        <div class="time">Times left:
+            <div id="seconds">100</div>
         </div>
     </div>
 
+    <br><br><br>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="score"><a href="#">View The Top 10 Scores</a></div>
+    </div>
 
+
+
+
+    <script src="js/quizmaterials.js"></script>
     <script src="js/script.js"></script>
 
 </body>
