@@ -23,18 +23,18 @@ var intropageEl = document.querySelector("#intropage");
 //hiding input form score
 var inputScore = document.querySelector('#input-data-container');
 
+//showing heart image
+var heartshapeEl = document.querySelector('#heart-shape');
+
 var current_question = 0;
 
 var current_score = 0;
 var check_wrong_times = 0;
 
+questioncontainerEl.style.visibility = "hidden";
+
 showQuestions();
 
-homePage();
-
-function homePage() {
-    questionEl.style.display = "block";
-}
 
 //start button event listener
 startbtnEl.addEventListener('click',
@@ -51,6 +51,10 @@ startbtnEl.addEventListener('click',
 
         //hidden start button once start
         startbtnEl.style.visibility = "hidden";
+
+        //show question
+        questioncontainerEl.style.visibility = "none";
+
     },
 
 );
@@ -86,16 +90,20 @@ function checkResult(checkeranswer) {
         current_question++;
         showQuestions();
 
-        //added score if get it right
+        //added score if right
         current_score = current_score + 10;
         console.log("this is score: " + current_score);
         check_wrong_times = 0
+
+        //showing heart image if right
+        document.body.appendChild(heartshapeEl);
     }
     else {
         alert("you are wrong");
         remainingSecond = remainingSecond - 10;
         check_wrong_times++;
         alert('You have got 3 attempts left');
+
         //set 3 attempts maximal
         if (check_wrong_times === 3) {
             current_question++;
@@ -130,6 +138,8 @@ function answerCheker(checkeranswer) {
 
 
 function showQuestions() {
+
+    questioncontainerEl.style.visibility = "block";
     console.log(current_question);
     var question_item = questions[current_question];
 
@@ -145,7 +155,7 @@ function showQuestions() {
 
 var displayClockEl = document.querySelector('#seconds');
 
-var remainingSecond = 100;
+var remainingSecond = 10;
 
 //set timer
 function triggerTimer() {
@@ -170,4 +180,32 @@ function triggerTimer() {
 //play sound function 
 function playAudio() {
     wrongaudioEl.play();
+}
+
+//local storage
+var scorelistEl = document.getElementById('#list');
+var nameEl = document.getElementById('#name');
+
+
+//get submit button and add event handler
+//var datasubmitEl = document.getElementById('#data-submit');
+//datasubmitEl.addEventListener('click', addToLocalStorage(), false);
+
+//if data, get data from localStorage and display on page load
+if (window.localStorage.getItem('name')) {
+    addToLocalStorage();
+}
+
+
+//function to add to local storage
+function addToLocalStorage() {
+
+    //store
+    localStorage.setItem("#name", "Alvaro");
+
+    //retrieve
+    document.getElementById("#score").innerHTML = localStorage.getItem("#name");
+
+    //topScoreEl = JSON.parse(localStorage.getItem('name'));
+
 }
