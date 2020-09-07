@@ -34,47 +34,48 @@
     <div class="score"><a href="#">View The Top 10 Scores</a></div>
 
 
-
-    <div class="d-flex justify-content-center align-items-center">
-
-
-        <div id="intropage-container" class="hide">
-            <div id="intropage">Welcome to the quiz</div>
-        </div>
+    <div class="row justify-content-center">
+        <div class="col-sm col-md">
 
 
-        <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class="btn" id="first-answer">Answer 1</button>
-                <button class="btn" id="second-answer">Answer 2</button>
-                <button class="btn" id="third-answer">Answer 3</button>
-                <button class="btn" id="fourth-answer">Answer 4</button>
+            <div id="intropage">
+                <h3 class="font-weight-bold">Welcome to the quiz</h3>
+                <button id="start-btn" class="start-btn btn btn-block my-4">Start</button>
+
             </div>
 
         </div>
 
-        <div class="controls">
-            <button id="start-btn" class="start-btn btn btn-block my-4">Start</button>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md">
+
+            <div id="question-container">
+                <div id="question">
+                    <h3 class="font-weight-bold">Question</h3>
+                </div>
+                <div id="answer-buttons" class="btn-grid">
+                    <button class="btn" id="first-answer">Answer 1</button>
+                    <button class="btn" id="second-answer">Answer 2</button>
+                    <button class="btn" id="third-answer">Answer 3</button>
+                    <button class="btn" id="fourth-answer">Answer 4</button>
+                </div>
+
+            </div>
 
         </div>
+
     </div>
 
 
-    <div id="input-data-container" class="hide" style="display:none">
+
+    <div id="input-data-container" class="hide">
         <div id="input-data">Input Your Name Here</div>
         <label for="name">Your Name</label>
         <input type="text" id="name">
-        <button class="submit-btn btn-block my-4" id="data-submit" style="background: #FF69B4!important">Submit</button>
-        <ul id="list"></ul>
+        <button class="submit-btn btn btn-block my-4" id="data-submit">Submit</button>
     </div>
-
-
-
-
-
-
-
 
 
     <script src="js/quizmaterials.js"></script>

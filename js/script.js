@@ -5,35 +5,54 @@ var answerbtnEl = document.querySelector('#answer-buttons');
 var startbtnEl = document.querySelector('#start-btn');
 var nextbtnEl = document.querySelector('#next-btn');
 
-var scoreEl = document.querySelector('#score');
-
 var firstanswerEl = document.querySelector('#first-answer');
 var secondanswerEl = document.querySelector('#second-answer');
 var thirdanswerEl = document.querySelector('#third-answer');
 var fourthanswerEl = document.querySelector('#fourth-answer')
 
-var wrongaudioEl = document.querySelector('#wrong-sound');
+//var wrongaudioEl = document.querySelector('#wrong-audio');
 //var rightaudioEl = document.querySelector('#right-audio');
 
-var secondsdisplayEl = document.querySelector("#seconds");
+var audiofartEl = new Audio('fart-1.wav');
+var audiocrowdEl = new Audio('crowd-cheering.mp3');
+var audiokidsEl = new Audio('kids-cheering.mp3');
 
+var liEl = document.querySelector('#saved-names');
+
+
+//time element
+var secondsdisplayEl = document.querySelector("#seconds");
+//score element
+var scoreEl = document.querySelector('#score');
 
 var intropageEl = document.querySelector("#intropage");
 
 //hiding input form score
-var inputScore = document.querySelector('#input-data-container');
+var inputScoreEl = document.querySelector('#input-data-container');
 
-//showing heart image
-var heartshapeEl = document.querySelector('#heart-shape');
+//hide question 
+questioncontainerEl.style.display = "none";
+
+//hide score input homepage 
+inputScoreEl.style.display = "none";
+
+
+//image element
+var heartshapeEl = document.createElement('IMG');
+heartshapeEl.setAttribute("src", "images/white-heart.png");
+heartshapeEl.setAttribute("width", "300");
+
+var brokenheartEl = document.createElement('IMG');
+brokenheartEl.setAttribute("src", "images/broken-heart.png");
+brokenheartEl.setAttribute("width", "300");
+
+
 
 var current_question = 0;
 
 var current_score = 0;
 var check_wrong_times = 0;
 
-questioncontainerEl.style.visibility = "hidden";
-
-showQuestions();
 
 
 //start button event listener
@@ -51,9 +70,6 @@ startbtnEl.addEventListener('click',
 
         //hidden start button once start
         startbtnEl.style.visibility = "hidden";
-
-        //show question
-        questioncontainerEl.style.visibility = "none";
 
     },
 
@@ -86,7 +102,12 @@ fourthanswerEl.addEventListener('click',
 function checkResult(checkeranswer) {
     var checkeragain = questions[current_question].answers[checkeranswer].correct;
     if (checkeragain === true) {
-        alert("you are right");
+        //alert("you are right");
+        audiokidsEl.play();
+
+        //showing heart image if right
+        document.body.appendChild(heartshapeEl);
+
         current_question++;
         showQuestions();
 
@@ -95,13 +116,15 @@ function checkResult(checkeranswer) {
         console.log("this is score: " + current_score);
         check_wrong_times = 0
 
-        //showing heart image if right
-        document.body.appendChild(heartshapeEl);
     }
     else {
         alert("you are wrong");
         remainingSecond = remainingSecond - 10;
         check_wrong_times++;
+        audiofartEl.play();
+
+        //showing broken heart image if wrong
+
         alert('You have got 3 attempts left');
 
         //set 3 attempts maximal
@@ -130,7 +153,7 @@ function answerCheker(checkeranswer) {
         checkResult(checkeranswer);
     }
     if (current_score == questions.lengh) {
-        inputScore.style.display = "block";
+        inputScoreEl.style.display = "block";
         questioncontainerEl.style.display = "none";
     }
 }
@@ -139,9 +162,12 @@ function answerCheker(checkeranswer) {
 
 function showQuestions() {
 
-    questioncontainerEl.style.visibility = "block";
+    questioncontainerEl.style.display = "block";
+
     console.log(current_question);
     var question_item = questions[current_question];
+
+
 
     //document.querySelector("#question").innerHTML = JSON.stringify(question_item);
     document.querySelector("#question").innerHTML = question_item.question;
@@ -155,7 +181,7 @@ function showQuestions() {
 
 var displayClockEl = document.querySelector('#seconds');
 
-var remainingSecond = 10;
+var remainingSecond = 20;
 
 //set timer
 function triggerTimer() {
@@ -168,7 +194,7 @@ function triggerTimer() {
             if (remainingSecond <= 0) {
                 clearInterval(intervalHandle)
                 alert('Times Up')
-                inputScore.style.display = "block";
+                inputScoreEl.style.display = "block";
                 questioncontainerEl.style.display = "none";
 
             }
@@ -177,35 +203,38 @@ function triggerTimer() {
         }, 1000);
 }
 
-//play sound function 
-function playAudio() {
-    wrongaudioEl.play();
-}
 
 //local storage
-var scorelistEl = document.getElementById('#list');
-var nameEl = document.getElementById('#name');
+var scorelistEl = document.querySelector('#list');
+var nameEl = document.querySelector('#name');
 
 
 //get submit button and add event handler
-//var datasubmitEl = document.getElementById('#data-submit');
-//datasubmitEl.addEventListener('click', addToLocalStorage(), false);
-
+var datasubmitEl = document.querySelector('#data-submit');
+datasubmitEl.addEventListener('click', addToLocalStorage);
+datasubmitEl.addEventListener('click', renderSavedScore);
 //if data, get data from localStorage and display on page load
-if (window.localStorage.getItem('name')) {
-    addToLocalStorage();
-}
+//if (window.localStorage.getItem('name')) {
+//addToLocalStorage();
+//}
 
 
 //function to add to local storage
 function addToLocalStorage() {
 
     //store
-    localStorage.setItem("#name", "Alvaro");
+    var name = nameEl.value;
+    localStorage.setItem("name", name);
 
     //retrieve
-    document.getElementById("#score").innerHTML = localStorage.getItem("#name");
+    //document.querySelector"#score").innerHTML = localStorage.getItem("#name");
 
     //topScoreEl = JSON.parse(localStorage.getItem('name'));
+
+}
+
+function renderSavedScore() {
+    var nameSubmitted = localStorage.getItem("name");
+    liEl.textContext = nameSubmitted;
 
 }
