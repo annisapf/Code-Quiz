@@ -18,6 +18,28 @@ var audiocrowdEl = new Audio('crowd-cheering.mp3');
 var audiokidsEl = new Audio('kids-cheering.mp3');
 
 var liEl = document.querySelector('#saved-names');
+document.getElementById('expand').style.display = 'none';
+
+
+
+
+var expandEl = document.querySelector("#collapsible-howto");
+
+expandEl.addEventListener('click',
+
+    function expandContent() {
+
+        if (document.getElementById('expand').style.display == 'block') {
+            document.getElementById('expand').style.display = 'none';
+        }
+        else {
+            document.getElementById('expand').style.display = 'block';
+        }
+
+
+    }
+
+)
 
 
 //time element
@@ -120,13 +142,17 @@ function checkResult(checkeranswer) {
     else {
         alert("you are wrong");
         remainingSecond = remainingSecond - 10;
+        if (remainingSecond < 0) {
+            remainingSecond = 0;
+        }
+
         check_wrong_times++;
         audiofartEl.play();
 
         //showing broken heart image if wrong
 
-        alert('You have got 3 attempts left');
 
+        alert('You have got ' + (3 - check_wrong_times) + ' attempts left');
         //set 3 attempts maximal
         if (check_wrong_times === 3) {
             current_question++;
@@ -200,41 +226,28 @@ function triggerTimer() {
             }
             remainingSecond--;
 
+
         }, 1000);
 }
 
 
 //local storage
 var scorelistEl = document.querySelector('#list');
-var nameEl = document.querySelector('#name');
-
 
 //get submit button and add event handler
 var datasubmitEl = document.querySelector('#data-submit');
-datasubmitEl.addEventListener('click', addToLocalStorage);
-datasubmitEl.addEventListener('click', renderSavedScore);
-//if data, get data from localStorage and display on page load
-//if (window.localStorage.getItem('name')) {
-//addToLocalStorage();
-//}
 
 
-//function to add to local storage
-function addToLocalStorage() {
+datasubmitEl.addEventListener('click',
 
-    //store
-    var name = nameEl.value;
-    localStorage.setItem("name", name);
+    function () {
 
-    //retrieve
-    //document.querySelector"#score").innerHTML = localStorage.getItem("#name");
 
-    //topScoreEl = JSON.parse(localStorage.getItem('name'));
+        var usernameInput = document.querySelector("#username").value;
+        //create object from submit button
+        var user = {
+            userName: usernameInput
+        }
+        localStorage.setItem("username", JSON.stringify(user));
 
-}
-
-function renderSavedScore() {
-    var nameSubmitted = localStorage.getItem("name");
-    liEl.textContext = nameSubmitted;
-
-}
+    });
