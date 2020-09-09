@@ -128,6 +128,7 @@ function checkResult(checkeranswer) {
 
     if (checkeragain === true) {
 
+        answerEl.style.display = "none";
         audiokidsEl.play();
 
 
@@ -142,6 +143,7 @@ function checkResult(checkeranswer) {
     }
     else {
 
+        answerEl.style.display = "block";
         answerEl.innerHTML = "Wrong!";
 
         remainingSecond = remainingSecond - 10;
@@ -182,7 +184,7 @@ function answerCheker(checkeranswer) {
         inputScoreEl.style.display = "block";
         questioncontainerEl.style.display = "none";
         document.getElementById('user-score').innerHTML = "Your score: " + current_score + " score";
-        heartgifEl.style.visibility = "none";
+        heartgifEl.style.display = "block";
 
     }
 }
@@ -192,6 +194,7 @@ function answerCheker(checkeranswer) {
 function showQuestions() {
 
     questioncontainerEl.style.display = "block";
+
 
     console.log(current_question);
     var question_item = questions[current_question];
@@ -227,7 +230,8 @@ function triggerTimer() {
             if (remainingSecond <= 0) {
                 clearInterval(intervalHandle)
                 if (questions.length == current_question) {
-                    alert('questions all answered');
+                    intropageEl.style.visibility = "none";
+
                 }
                 else {
                     alert('Times Up');
@@ -312,6 +316,10 @@ function renderScore() {
     heartgifEl.style.visibility = "none";
 
 }
+
+
+
+//remove all local storage items
 
 
 
