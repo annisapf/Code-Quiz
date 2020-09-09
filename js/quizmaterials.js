@@ -1,5 +1,5 @@
 
-//list of questions
+//assign variable questions in separate file
 var questions = [
     {
         question: 'Inside which HTML element do we put the JavaScript?',

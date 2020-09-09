@@ -1,4 +1,4 @@
-//setting the element
+//setting the element of quiz, buttons, answers
 var questioncontainerEl = document.querySelector('#question-container');
 var questionEl = document.querySelector('#question');
 var answerbtnEl = document.querySelector('#answer-buttons');
@@ -10,18 +10,15 @@ var secondanswerEl = document.querySelector('#second-answer');
 var thirdanswerEl = document.querySelector('#third-answer');
 var fourthanswerEl = document.querySelector('#fourth-answer')
 
+//audio element
 var audiofartEl = new Audio('assets/fart-1.wav');
-
 var audiokidsEl = new Audio('assets/kids-cheering.mp3');
 
+//visible back and clear buttons
+document.getElementById('back-button').style.display = "none";
+document.getElementById('clear-button').style.display = "none";
 
-
-var liEl = document.querySelector('#saved-names');
-document.getElementById('expand').style.display = 'none';
-
-
-
-
+//collapsibe how to play
 var expandEl = document.querySelector("#collapsible-howto");
 
 expandEl.addEventListener('click',
@@ -41,11 +38,7 @@ expandEl.addEventListener('click',
 )
 
 
-//time element
-var secondsdisplayEl = document.querySelector("#seconds");
-
-
-
+//homepage quiz
 var intropageEl = document.querySelector("#intropage");
 
 //hiding input form score
@@ -63,9 +56,8 @@ var heartgifEl = document.createElement('IMG');
 heartgifEl.setAttribute("src", "images/connie.gif");
 heartgifEl.setAttribute("width", "200");
 
-
+//global variables for questions, scores, wrong times
 var current_question = 0;
-
 var current_score = 0;
 var check_wrong_times = 0;
 
@@ -92,6 +84,8 @@ startbtnEl.addEventListener('click',
 
 );
 
+
+//event handling for each answer
 firstanswerEl.addEventListener('click',
     function () {
         answerCheker(0)
@@ -116,6 +110,8 @@ fourthanswerEl.addEventListener('click',
     }
 )
 
+
+
 var answerEl = document.getElementById("answer-result");
 
 function checkResult(checkeranswer) {
@@ -128,7 +124,7 @@ function checkResult(checkeranswer) {
 
     if (checkeragain === true) {
 
-        answerEl.style.display = "none";
+        answerEl.style.display = "block";
         audiokidsEl.play();
 
 
@@ -142,7 +138,7 @@ function checkResult(checkeranswer) {
 
     }
     else {
-
+        //show wrong when pick wrong answer
         answerEl.style.display = "block";
         answerEl.innerHTML = "Wrong!";
 
@@ -155,6 +151,7 @@ function checkResult(checkeranswer) {
         audiofartEl.play();
 
         alert('You have got ' + (3 - check_wrong_times) + ' attempts left');
+
         //set 3 attempts maximal
         if (check_wrong_times === 3) {
             current_question++;
@@ -184,7 +181,7 @@ function answerCheker(checkeranswer) {
         inputScoreEl.style.display = "block";
         questioncontainerEl.style.display = "none";
         document.getElementById('user-score').innerHTML = "Your score: " + current_score + " score";
-        heartgifEl.style.display = "block";
+        heartgifEl.style.display = "none";
 
     }
 }
@@ -235,6 +232,7 @@ function triggerTimer() {
                 }
                 else {
                     alert('Times Up');
+                    document.getElementById('user-score').innerHTML = "Your score: " + current_score + " score";
                 }
                 inputScoreEl.style.display = "block";
                 questioncontainerEl.style.display = "none";
@@ -312,14 +310,31 @@ function renderScore() {
     }
     userScoreListDOM.innerHTML = listItem;
 
+
+    document.getElementById('back-button').style.display = "block";
+    document.getElementById('clear-button').style.display = "block";
+
+
     document.getElementById('input-data-container').style.display = 'none';
-    heartgifEl.style.visibility = "none";
+
 
 }
 
 
+var clearbuttonEl = document.querySelector('#clear-button');
+
+
+var backbuttonEl = document.querySelector('#back-button');
+
 
 //remove all local storage items
+clearbuttonEl.addEventListener('click',
+    function deleteItems() {
+        localStorage.clear();
+    }
+
+)
+
 
 
 

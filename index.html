@@ -26,7 +26,6 @@
     <!-- Audio material sources-->
     <audio id="wrong-sound">
         <source src="assets/fart-1.wav" type="audio/wav">
-        <source src="assets/crowd-cheering.mp3" type="audio/mp3">
         <source src="assets/kids-cheering.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -42,69 +41,72 @@
 
     <div class="row justify-content-center">
         <div class="col-sm col-md">
-
-
             <div id="intropage">
                 <h3 class="font-weight-bold">Test Your Javascript Knowledge</h3>
-                <button id="start-btn" class="start-btn btn btn-block my-4">Start</button>
+                <button id="start-btn" class="start-btn btn btn-block my-4">Start Quiz</button>
                 <span id="collapsible-howto" style="font-size: small;"><em><u>* Click to Read How To
                             Play</u></em></span>
-                <div class="content-expand"></div>
-                <p id="expand" class="justify-content-center" style="display:none; font-size: small;">There are 10
-                    questions you have to complete in 100 seconds.<br> When you get the right answer, you will earn 10
-                    score. <br> You will have 3 times attempts for each quetion <br>otherwise you have to move to the
-                    next questions. Good luck and have fun.
-                </p>
+                <div id="expand" class="justify-content-center" style="display:none; font-size: small;">
+
+                    <p>There are 10 questions you have to complete in 100 seconds.<br>
+                        When you get the right answer, you will earn 10 score.<br>
+                        You will have 3 times attempts for each question otherwise you have to move to
+                        the next questions. Good luck and have fun.
+                    </p>
+                </div>
             </div>
+
         </div>
 
-    </div>
 
+        <div class="row justify-content-center">
+            <div class="col-md">
 
-    <div class="row justify-content-center">
-        <div class="col-md">
-
-            <div id="question-container">
-                <div id="question" style="font-weight: bold; padding: 20px;">
-                </div>
-                <div id="answer-buttons" class="btn-grid">
-                    <ul>
-                        <li style="padding:2px;color:transparent"><button class="btn" id="first-answer"></button></li>
-                        <li style="padding:2px;color:transparent"><button class="btn" id="second-answer"></button></li>
-                        <li style="padding:2px;color:transparent"><button class="btn" id="third-answer"></button></li>
-                        <li style="padding:2px;color:transparent"><button class="btn" id="fourth-answer"></button></li>
+                <div id="question-container">
+                    <div id="question" style="font-weight: bold; padding: 20px;">
+                    </div>
+                    <div id="answer-buttons" class="btn-grid">
+                        <ul>
+                            <li style="padding:2px;color:transparent"><button class="btn" id="first-answer"></button>
+                            </li>
+                            <li style="padding:2px;color:transparent"><button class="btn" id="second-answer"></button>
+                            </li>
+                            <li style="padding:2px;color:transparent"><button class="btn" id="third-answer"></button>
+                            </li>
+                            <li style="padding:2px;color:transparent"><button class="btn" id="fourth-answer"></button>
+                            </li>
+                        </ul>
                         <hr>
                         <p id="answer-result"></p>
-                    </ul>
-                    <p id="answer-result"></p>
 
 
+                    </div>
                 </div>
+
             </div>
 
         </div>
 
-    </div>
 
 
+        <div id="input-data-container">
+            <div id="input-data" style="font-weight: bold;">Input Your Name Here</div>
+            <p id="user-score" style="font-size: small;"></p>
+            <input type="text" class="username" id="username" placeholder="Your name...">
+            <button class="submit-btn btn my-4" id="data-submit">Submit</button>
 
-    <div id="input-data-container">
-        <div id="input-data" style="font-weight: bold;">Input Your Name Here</div>
-        <p id="user-score" style="font-size: small;"></p>
-        <input type="text" class="username" id="username" placeholder="Your name...">
-        <button class="submit-btn btn my-4" id="data-submit">Submit</button>
+        </div>
 
-    </div>
-
-    <div id="userscore-container">
-        <ul id="userscore-list">
-        </ul>
-        <button class="clear-btn btn my-4" id="clear-button">Clear</button>
-    </div>
+        <div id="userscore-container">
+            <ul id="userscore-list">
+            </ul>
+            <button class="back-btn btn my-4" id="back-button">Back to Quiz</button>
+            <button class="clear-btn btn my-4" id="clear-button">Clear</button>
+        </div>
 
 
-    <script src="js/quizmaterials.js"></script>
-    <script src="js/script.js"></script>
+        <script src="js/quizmaterials.js"></script>
+        <script src="js/script.js"></script>
 
 </body>
 
