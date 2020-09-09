@@ -43,8 +43,8 @@ expandEl.addEventListener('click',
 
 //time element
 var secondsdisplayEl = document.querySelector("#seconds");
-//score element
-var scoreEl = document.querySelector('#score');
+
+
 
 var intropageEl = document.querySelector("#intropage");
 
@@ -61,12 +61,7 @@ inputScoreEl.style.display = "none";
 //image element
 var heartgifEl = document.createElement('IMG');
 heartgifEl.setAttribute("src", "images/connie.gif");
-heartgifEl.setAttribute("width", "300");
-
-var brokenheartEl = document.createElement('IMG');
-brokenheartEl.setAttribute("src", "images/broken-heart-anim.gif");
-brokenheartEl.setAttribute("width", "300");
-
+heartgifEl.setAttribute("width", "200");
 
 
 var current_question = 0;
@@ -83,6 +78,7 @@ startbtnEl.addEventListener('click',
         current_question++;
         if (current_question >= questions.length) {
             alert("There are no more questions");
+
             return;
         }
         showQuestions();
@@ -120,10 +116,18 @@ fourthanswerEl.addEventListener('click',
     }
 )
 
+var answerEl = document.getElementById("answer-result");
+
 function checkResult(checkeranswer) {
+
     var checkeragain = questions[current_question].answers[checkeranswer].correct;
+    if (checkeragain == null) {
+
+        return;
+    }
+
     if (checkeragain === true) {
-        //alert("you are right");
+
         audiokidsEl.play();
 
 
@@ -137,7 +141,9 @@ function checkResult(checkeranswer) {
 
     }
     else {
-        alert("you are wrong");
+
+        answerEl.innerHTML = "Wrong!";
+
         remainingSecond = remainingSecond - 10;
         if (remainingSecond < 0) {
             remainingSecond = 0;
@@ -172,9 +178,12 @@ function answerCheker(checkeranswer) {
     else if (checkeranswer === 3) {
         checkResult(checkeranswer);
     }
-    if (current_score == questions.lengh) {
+    if (current_question == questions.length) {
         inputScoreEl.style.display = "block";
         questioncontainerEl.style.display = "none";
+        document.getElementById('user-score').innerHTML = "Your score: " + current_score + " score";
+        heartgifEl.style.visibility = "none";
+
     }
 }
 
@@ -186,9 +195,13 @@ function showQuestions() {
 
     console.log(current_question);
     var question_item = questions[current_question];
+    //when questions finish
+    if (question_item == null) {
+        document.getElementById('input-data-container').style.display = 'none';
+        remainingSecond = 0;
+        return;
+    }
 
-
-    //document.querySelector("#question").innerHTML = JSON.stringify(question_item);
     document.querySelector("#question").innerHTML = question_item.question;
 
     document.querySelector('#first-answer').innerText = question_item.answers[0].label;
@@ -196,11 +209,12 @@ function showQuestions() {
     document.querySelector('#third-answer').innerText = question_item.answers[2].label;
     document.querySelector('#fourth-answer').innerText = question_item.answers[3].label;
 
+
 }
 
 var displayClockEl = document.querySelector('#seconds');
 
-var remainingSecond = 20;
+var remainingSecond = 100;
 
 //set timer
 function triggerTimer() {
@@ -212,11 +226,14 @@ function triggerTimer() {
 
             if (remainingSecond <= 0) {
                 clearInterval(intervalHandle)
-                alert('Times Up')
+                if (questions.length == current_question) {
+                    alert('questions all answered');
+                }
+                else {
+                    alert('Times Up');
+                }
                 inputScoreEl.style.display = "block";
                 questioncontainerEl.style.display = "none";
-                //showing heart image if right
-                document.body.appendChild(heartgifEl);
 
             }
             remainingSecond--;
@@ -230,6 +247,10 @@ function triggerTimer() {
 var datasubmitEl = document.querySelector('#data-submit');
 
 
+
+
+
+
 datasubmitEl.addEventListener('click',
 
     function () {
@@ -237,7 +258,7 @@ datasubmitEl.addEventListener('click',
 
         var usernameInput = document.querySelector("#username").value;
         if (usernameInput === "") {
-            alert("name cant be empty");
+            alert("Please submit your name");
             return;
         }
         //create object from submit button
@@ -259,7 +280,6 @@ datasubmitEl.addEventListener('click',
 
     });
 
-var userScoreEl = document.querySelector('#userscore-container');
 
 function renderScore() {
 
@@ -268,7 +288,7 @@ function renderScore() {
 
     var userScoreListDOM = document.querySelector('#userscore-list');
 
-
+    //function to sort highest score to lowest score
     gameScoreList.sort(function (a, b) {
         if (a.userScore > b.userScore) {
             return -1;
@@ -289,5 +309,10 @@ function renderScore() {
     userScoreListDOM.innerHTML = listItem;
 
     document.getElementById('input-data-container').style.display = 'none';
+    heartgifEl.style.visibility = "none";
 
 }
+
+
+
+
