@@ -10,12 +10,16 @@ var secondanswerEl = document.querySelector('#second-answer');
 var thirdanswerEl = document.querySelector('#third-answer');
 var fourthanswerEl = document.querySelector('#fourth-answer')
 
-//var wrongaudioEl = document.querySelector('#wrong-audio');
-//var rightaudioEl = document.querySelector('#right-audio');
+var audiofartEl = new Audio('assets/fart-1.wav');
 
-var audiofartEl = new Audio('fart-1.wav');
-var audiocrowdEl = new Audio('crowd-cheering.mp3');
-var audiokidsEl = new Audio('kids-cheering.mp3');
+var audiocrowdEl = new Audio('assets/crowd-cheering.mp3');
+
+
+
+var audiokidsEl = new Audio('assets/kids-cheering.mp3');
+
+
+
 
 var liEl = document.querySelector('#saved-names');
 document.getElementById('expand').style.display = 'none';
@@ -60,12 +64,12 @@ inputScoreEl.style.display = "none";
 
 
 //image element
-var heartshapeEl = document.createElement('IMG');
-heartshapeEl.setAttribute("src", "images/white-heart.png");
-heartshapeEl.setAttribute("width", "300");
+var heartgifEl = document.createElement('IMG');
+heartgifEl.setAttribute("src", "images/connie.gif");
+heartgifEl.setAttribute("width", "300");
 
 var brokenheartEl = document.createElement('IMG');
-brokenheartEl.setAttribute("src", "images/broken-heart.png");
+brokenheartEl.setAttribute("src", "images/broken-heart-anim.gif");
 brokenheartEl.setAttribute("width", "300");
 
 
@@ -127,8 +131,6 @@ function checkResult(checkeranswer) {
         //alert("you are right");
         audiokidsEl.play();
 
-        //showing heart image if right
-        document.body.appendChild(heartshapeEl);
 
         current_question++;
         showQuestions();
@@ -148,9 +150,6 @@ function checkResult(checkeranswer) {
 
         check_wrong_times++;
         audiofartEl.play();
-
-        //showing broken heart image if wrong
-
 
         alert('You have got ' + (3 - check_wrong_times) + ' attempts left');
         //set 3 attempts maximal
@@ -194,7 +193,6 @@ function showQuestions() {
     var question_item = questions[current_question];
 
 
-
     //document.querySelector("#question").innerHTML = JSON.stringify(question_item);
     document.querySelector("#question").innerHTML = question_item.question;
 
@@ -222,6 +220,8 @@ function triggerTimer() {
                 alert('Times Up')
                 inputScoreEl.style.display = "block";
                 questioncontainerEl.style.display = "none";
+                //showing heart image if right
+                document.body.appendChild(heartgifEl);
 
             }
             remainingSecond--;
@@ -230,9 +230,6 @@ function triggerTimer() {
         }, 1000);
 }
 
-
-//local storage
-var scorelistEl = document.querySelector('#list');
 
 //get submit button and add event handler
 var datasubmitEl = document.querySelector('#data-submit');
@@ -244,10 +241,46 @@ datasubmitEl.addEventListener('click',
 
 
         var usernameInput = document.querySelector("#username").value;
+        if (usernameInput === "") {
+            alert("name cant be empty");
+            return;
+        }
         //create object from submit button
         var user = {
-            userName: usernameInput
+            userName: usernameInput,
+            userScore: current_score
         }
-        localStorage.setItem("username", JSON.stringify(user));
+        var gameScoreList = localStorage.getItem("game_score")
+        if (gameScoreList == null) {
+            gameScoreList = [];
+        }
+        else {
+            gameScoreList = JSON.parse(gameScoreList);
+        }
+        gameScoreList.push(user)
+        localStorage.setItem("game_score", JSON.stringify(gameScoreList));
 
+        renderScore();
     });
+
+
+
+function renderScore() {
+
+    var gameScoreList = localStorage.getItem("game_score");
+    gameScoreList = JSON.parse(gameScoreList);
+
+    var userScoreListDOM = document.querySelector('#username-input');
+
+
+
+    for (var i = 0; i < gameScoreList.length; i++) {
+        var showingScore = gameScoreList[i];
+        console.log(showingScore);
+        //var listElement = userScoreListDOM.createElement('li');
+        //listElement.appendChild(showingScore);
+
+    }
+
+
+}

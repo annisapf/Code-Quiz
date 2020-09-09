@@ -21,8 +21,12 @@
 
 <body>
 
+    <!-- Audio material sources-->
     <audio id="wrong-sound">
-        <source src="fart-1.wav" type="audio/wav">
+        <source src="assets/fart-1.wav" type="audio/wav">
+        <source src="assets/crowd-cheering.mp3" type="audio/mp3">
+        <source src="assets/kids-cheering.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
     </audio>
 
     <!-- timer set -->
@@ -39,11 +43,16 @@
 
 
             <div id="intropage">
-                <h3 class="font-weight-bold">Welcome to the quiz</h3>
+                <h3 class="font-weight-bold">Test Your Javascript Knowledge</h3>
                 <button id="start-btn" class="start-btn btn btn-block my-4">Start</button>
-                <button type="button" id="collapsible-howto">How To Play</button>
+                <span id="collapsible-howto" style="font-size: small;"><em><u>* Click to Read How To
+                            Play</u></em></span>
                 <div class="content-expand"></div>
-                <p id="expand">How to play this game.</p>
+                <p id="expand" class="justify-content-center" style="display:none; font-size: small;">There are 10
+                    questions you have to complete in 100 seconds.<br> When you get the right answer, you will earn 10
+                    score. <br> You will have 3 times attempts for each quetion <br>otherwise you have to move to the
+                    next questions. Good luck and have fun.
+                </p>
             </div>
         </div>
 
@@ -59,10 +68,13 @@
                     <h3 class="font-weight-bold">Question</h3>
                 </div>
                 <div id="answer-buttons" class="btn-grid">
-                    <button class="btn" id="first-answer">Answer 1</button>
-                    <button class="btn" id="second-answer">Answer 2</button>
-                    <button class="btn" id="third-answer">Answer 3</button>
-                    <button class="btn" id="fourth-answer">Answer 4</button>
+                    <ul>
+                        <li style="padding:2px"> A. <button class="btn" id="first-answer">Answer 1</button></li>
+                        <li style="padding:2px"> B. <button class="btn" id="second-answer">Answer 2</button></li>
+                        <li style="padding:2px"> C. <button class="btn" id="third-answer">Answer 3</button></li>
+                        <li style="padding:2px"> D. <button class="btn" id="fourth-answer">Answer 4</button></li>
+                    </ul>
+
                 </div>
 
             </div>
@@ -77,6 +89,12 @@
         <div id="input-data">Input Your Name Here</div>
         <input type="text" class="username" id="username" placeholder="Your name...">
         <button class="submit-btn btn my-4" id="data-submit">Submit</button>
+        <ul id="username-input"></ul>
+    </div>
+
+    <div id="userscore-container">
+        <ul id="userscore-list">
+        </ul>
     </div>
 
 
