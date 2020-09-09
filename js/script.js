@@ -12,12 +12,7 @@ var fourthanswerEl = document.querySelector('#fourth-answer')
 
 var audiofartEl = new Audio('assets/fart-1.wav');
 
-var audiocrowdEl = new Audio('assets/crowd-cheering.mp3');
-
-
-
 var audiokidsEl = new Audio('assets/kids-cheering.mp3');
-
 
 
 
@@ -261,26 +256,38 @@ datasubmitEl.addEventListener('click',
         localStorage.setItem("game_score", JSON.stringify(gameScoreList));
 
         renderScore();
+
     });
 
-
+var userScoreEl = document.querySelector('#userscore-container');
 
 function renderScore() {
 
     var gameScoreList = localStorage.getItem("game_score");
     gameScoreList = JSON.parse(gameScoreList);
 
-    var userScoreListDOM = document.querySelector('#username-input');
+    var userScoreListDOM = document.querySelector('#userscore-list');
 
 
+    gameScoreList.sort(function (a, b) {
+        if (a.userScore > b.userScore) {
+            return -1;
+        }
+        if (b.userScore > a.userScore) {
+            return 1;
+        }
+        return 0;
+    });
 
+    var listItem = "";
     for (var i = 0; i < gameScoreList.length; i++) {
         var showingScore = gameScoreList[i];
-        console.log(showingScore);
-        //var listElement = userScoreListDOM.createElement('li');
-        //listElement.appendChild(showingScore);
-
+        var name = showingScore.userName;
+        var score = showingScore.userScore;
+        listItem = listItem + "<li>" + name + ": " + score + "</li>"
     }
+    userScoreListDOM.innerHTML = listItem;
 
+    document.getElementById('input-data-container').style.display = 'none';
 
 }
