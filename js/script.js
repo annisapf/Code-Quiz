@@ -111,14 +111,13 @@ fourthanswerEl.addEventListener('click',
 )
 
 
-
+//checking answer true or false
 var answerEl = document.getElementById("answer-result");
 
 function checkResult(checkeranswer) {
 
     var checkeragain = questions[current_question].answers[checkeranswer].correct;
     if (checkeragain == null) {
-
         return;
     }
 
@@ -190,8 +189,8 @@ function answerCheker(checkeranswer) {
 
 function showQuestions() {
 
+    answerEl.style.display = "block";
     questioncontainerEl.style.display = "block";
-
 
     console.log(current_question);
     var question_item = questions[current_question];
@@ -201,7 +200,7 @@ function showQuestions() {
         remainingSecond = 0;
         return;
     }
-
+    //show quiz
     document.querySelector("#question").innerHTML = question_item.question;
 
     document.querySelector('#first-answer').innerText = question_item.answers[0].label;
@@ -247,10 +246,6 @@ function triggerTimer() {
 
 //get submit button and add event handler
 var datasubmitEl = document.querySelector('#data-submit');
-
-
-
-
 
 
 datasubmitEl.addEventListener('click',
@@ -321,9 +316,8 @@ function renderScore() {
 }
 
 
+
 var clearbuttonEl = document.querySelector('#clear-button');
-
-
 var backbuttonEl = document.querySelector('#back-button');
 
 
@@ -331,6 +325,11 @@ var backbuttonEl = document.querySelector('#back-button');
 clearbuttonEl.addEventListener('click',
     function deleteItems() {
         localStorage.clear();
+        if (gameScoreList === null) {
+
+            document.getElementById('user-score').innerHTML = "";
+        }
+
     }
 
 )
