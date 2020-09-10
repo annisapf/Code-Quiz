@@ -311,6 +311,8 @@ function renderScore() {
 
     document.getElementById('input-data-container').style.display = 'none';
 
+    intropageEl.style.display = "none";
+
 
 }
 
