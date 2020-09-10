@@ -51,11 +51,6 @@ questioncontainerEl.style.display = "none";
 inputScoreEl.style.display = "none";
 
 
-//image element
-var heartgifEl = document.createElement('IMG');
-heartgifEl.setAttribute("src", "images/connie.gif");
-heartgifEl.setAttribute("width", "200");
-
 //global variables for questions, scores, wrong times
 var current_question = 0;
 var current_score = 0;
@@ -189,7 +184,7 @@ function answerCheker(checkeranswer) {
 
 function showQuestions() {
 
-    answerEl.style.display = "block";
+    answerEl.style.display = "none";
     questioncontainerEl.style.display = "block";
 
     console.log(current_question);
@@ -319,6 +314,15 @@ function renderScore() {
 
 }
 
+//view score history
+var scoreHistoryEl = document.querySelector("#score-history");
+scoreHistoryEl.addEventListener('click',
+    function viewScoreHistory() {
+
+        renderScore();
+        intropageEl.style.display = "none";
+    })
+
 
 
 var clearbuttonEl = document.querySelector('#clear-button');
@@ -339,6 +343,15 @@ clearbuttonEl.addEventListener('click',
 
 )
 
+//back to quiz
+backbuttonEl.addEventListener('click',
+    function backtoQuiz() {
+        location.reload();
+
+
+    }
+
+)
 
 
 

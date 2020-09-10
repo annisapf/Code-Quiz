@@ -13,7 +13,7 @@ index.html |
 styles.css |
 script.js  |
 quizmaterials.js |
-audio and image files|
+audio files|
 
 
 ## Acceptance Criteria
