@@ -10,6 +10,13 @@ var secondanswerEl = document.querySelector('#second-answer');
 var thirdanswerEl = document.querySelector('#third-answer');
 var fourthanswerEl = document.querySelector('#fourth-answer')
 
+//create empty game score list
+
+var initScoreList = localStorage.getItem("game_score")
+if (initScoreList == null) {
+    localStorage.setItem("game_score", JSON.stringify([]));
+}
+
 //audio element
 var audiofartEl = new Audio('assets/fart-1.wav');
 var audiokidsEl = new Audio('assets/kids-cheering.mp3');
