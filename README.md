@@ -37,7 +37,7 @@ audio files|
 * [GetBootstrap] (https://getbootstrap.com/) - Open-source CSS framework directed at responsive, mobile-first front-end web development. 
 
 ## Screenshot
-
+![Javascript-Code-Quiz](https://user-images.githubusercontent.com/7066137/92687311-a2bdd480-f37e-11ea-8685-30813f1b920a.png)
 
 ### Link to the App
 <a href="https://annisapf.github.io/Code-Quiz/">The URLs of the deployed applications in GitHub</a><hr>
