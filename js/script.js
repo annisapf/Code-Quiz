@@ -273,9 +273,12 @@ datasubmitEl.addEventListener('click',
         gameScoreList.push(user)
         localStorage.setItem("game_score", JSON.stringify(gameScoreList));
 
+
         renderScore();
 
     });
+
+
 
 
 function renderScore() {
@@ -296,6 +299,7 @@ function renderScore() {
         return 0;
     });
 
+    //showing saved scores
     var listItem = "";
     for (var i = 0; i < gameScoreList.length; i++) {
         var showingScore = gameScoreList[i];
@@ -305,10 +309,10 @@ function renderScore() {
     }
     userScoreListDOM.innerHTML = listItem;
 
+    document.getElementById('top-score').innerHTML = "Top Scores";
 
     document.getElementById('back-button').style.display = "block";
     document.getElementById('clear-button').style.display = "block";
-
 
     document.getElementById('input-data-container').style.display = 'none';
 
@@ -325,9 +329,10 @@ var backbuttonEl = document.querySelector('#back-button');
 clearbuttonEl.addEventListener('click',
     function deleteItems() {
         localStorage.clear();
+        var gameScoreList = localStorage.getItem("game_score");
         if (gameScoreList === null) {
 
-            document.getElementById('user-score').innerHTML = "";
+            document.getElementById('userscore-list').innerHTML = "";
         }
 
     }

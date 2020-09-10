@@ -3,16 +3,17 @@
 
 <head>
 
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="description" content="Code Quiz Javascript" />
+    <meta name="keywords" content="Quiz Javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
     <link href="css/styles.css" rel="stylesheet">
@@ -88,22 +89,26 @@
     </div>
 
 
+    <div class="row justify-content-center">
+        <div class="col-md">
+            <div id="input-data-container">
+                <div id="input-data" style="font-weight: bold;">Input Your Name Here</div>
+                <p id="user-score" style="font-size: small;"></p>
+                <input type="text" class="username" id="username" placeholder="Your name...">
+                <button class="submit-btn btn my-4" id="data-submit">Submit</button>
 
-    <div id="input-data-container">
-        <div id="input-data" style="font-weight: bold;">Input Your Name Here</div>
-        <p id="user-score" style="font-size: small;"></p>
-        <input type="text" class="username" id="username" placeholder="Your name...">
-        <button class="submit-btn btn my-4" id="data-submit">Submit</button>
-
+            </div>
+        </div>
     </div>
 
+
     <div id="userscore-container">
+        <h3 id="top-score"></h3>
         <ul id="userscore-list">
         </ul>
         <button class="back-btn btn my-4" id="back-button">Back to Quiz</button>
         <button class="clear-btn btn my-4" id="clear-button">Clear</button>
     </div>
-
 
     <script src="js/quizmaterials.js"></script>
     <script src="js/script.js"></script>
